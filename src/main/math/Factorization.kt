@@ -1,13 +1,13 @@
 package com.vamsi3.algorithm.math
 
 fun primeDivisors(number: Int) = sequence {
-    var d = 2
-    var n = number
-    while (d * d <= n) {
-        if (n % d != 0) continue
-        while (n % d == 0) n /= d
-        yield(d)
-        ++d
-    }
-    if (n > 1) yield(n)
+    var numberMutable = number
+    generateSequence(2) { it + 1 }
+        .takeWhile { it * it <= numberMutable }
+        .filter { numberMutable % it == 0 }
+        .forEach {
+            yield(it)
+            while (numberMutable % it == 0) numberMutable /= it
+        }
+    if (numberMutable > 1) yield(numberMutable)
 }

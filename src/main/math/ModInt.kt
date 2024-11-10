@@ -1,6 +1,6 @@
 package com.vamsi3.algorithm.math
 
-class ModInt private constructor(
+class ModInt(
     value: Long = 0,
     private val mod: Int,
 ) : Number() {
@@ -60,7 +60,7 @@ class ModInt private constructor(
         return r
     }
 
-    private fun copy(value: Number = this.value, mod: Int = this.mod) = ModInt(value, mod)
+    private fun copy() = ModInt(value, mod)
 }
 
 fun Number.toModInt(mod: Int) = ModInt(this, mod)
